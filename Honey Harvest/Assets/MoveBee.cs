@@ -15,6 +15,8 @@ public class MoveBee : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (Input.GetMouseButtonDown(1)) {
+        
         // get our mouse position
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
@@ -29,5 +31,6 @@ public class MoveBee : MonoBehaviour
         
         // move the bee there
         bee.transform.position = moveTo;
+    }
     }
 }
