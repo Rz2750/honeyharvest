@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CheckCollide : MonoBehaviour
 {
-    public GameObject BeePurple;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +17,9 @@ public class CheckCollide : MonoBehaviour
     }
     
     void OnCollisionEnter2D(Collision2D other){
-         if (other.gameObject.tag == "Player"){
-              Destroy(other.gameObject);
+         if (other.gameObject.tag == "Enemy"){
+              // Destroy(other.gameObject);
+              Debug.Log("Is Touching");
          }
     }
 
