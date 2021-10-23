@@ -6,10 +6,12 @@ public class HideOnStart : MonoBehaviour
 {
     
     public GameObject enemy;
+    public GameObject life;
     
     // Start is called before the first frame update
     void Start() {
         enemy.GetComponent<Renderer>().enabled = false;
+        life.GetComponent<Renderer>().enabled = false;
     }
 
     void Update() {
@@ -19,6 +21,7 @@ public class HideOnStart : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other){
          if (other.gameObject.tag == "Player"){
               enemy.GetComponent<Renderer>().enabled = true;
+              life.GetComponent<Renderer>().enabled = true;
          }
     }
     
