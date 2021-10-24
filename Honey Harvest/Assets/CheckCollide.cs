@@ -33,7 +33,7 @@ public class CheckCollide : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other){
          if (other.gameObject.tag == "Enemy"){
             lastTouched = other.gameObject;
-            
+            ScoreScript.scoreValue += 1;
             die1.GetComponent<Renderer>().enabled = true;
             die2.GetComponent<Renderer>().enabled = true;
             cl1.SetActive(true);
@@ -53,7 +53,7 @@ public class CheckCollide : MonoBehaviour {
         }
         if (other.gameObject.tag == "heart"){
             lastTouched = other.gameObject;
-
+            ScoreScript.scoreValue += 1;
         }
     }
     
