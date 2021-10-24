@@ -7,11 +7,13 @@ public class HideOnStart : MonoBehaviour
     
     public GameObject enemy;
     public GameObject life;
-    
+    public GameObject powerup;
+
     // Start is called before the first frame update
     void Start() {
         enemy.GetComponent<Renderer>().enabled = false;
         life.GetComponent<Renderer>().enabled = false;
+        powerup.GetComponent<Renderer>().enabled = false;
     }
 
     void Update() {
@@ -22,6 +24,7 @@ public class HideOnStart : MonoBehaviour
          if (other.gameObject.tag == "Player"){
               enemy.GetComponent<Renderer>().enabled = true;
               life.GetComponent<Renderer>().enabled = true;
+            powerup.GetComponent<Renderer>().enabled = true;
          }
     }
     
