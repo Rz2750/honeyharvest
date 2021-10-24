@@ -51,6 +51,10 @@ public class CheckCollide : MonoBehaviour {
             // we want this to replace the die with one of the powered up die
            
         }
+        if (other.gameObject.tag == "heart"){
+            lastTouched = other.gameObject;
+
+        }
     }
     
     
