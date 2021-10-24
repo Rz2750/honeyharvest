@@ -17,6 +17,8 @@ public class Dice : MonoBehaviour {
     
     public GameObject player;
     public GameObject enemy;
+    public GameObject life;
+    public GameObject powerup;
     
     public GameObject die1;
     public GameObject die2;

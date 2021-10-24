@@ -6,7 +6,11 @@ public class CheckCollide : MonoBehaviour {
     
     public GameObject die1;
     public GameObject die2;
-    
+    public GameObject die7;
+    public GameObject die8;
+    public GameObject die9;
+    public GameObject die10;
+
     public GameObject cl1;
     public GameObject cl2;
     public GameObject cl3;
@@ -40,6 +44,12 @@ public class CheckCollide : MonoBehaviour {
             bd.SetActive(true);
             
             StartCoroutine(die2.GetComponent<Dice>().RollTheDice());
+        }
+        if (other.gameObject.tag == "powerup")
+        {
+            lastTouched = other.gameObject;
+            // we want this to replace the die with one of the powered up die
+           
         }
     }
     
