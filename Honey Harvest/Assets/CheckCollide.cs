@@ -6,10 +6,10 @@ public class CheckCollide : MonoBehaviour {
     
     public GameObject die1;
     public GameObject die2;
-    public GameObject die7;
-    public GameObject die8;
-    public GameObject die9;
-    public GameObject die9b;
+    // public GameObject die7;
+    // public GameObject die8;
+    // public GameObject die9;
+    // public GameObject die9b;
     public GameObject lastTouched;
     //public bool bosstile;
 
@@ -21,7 +21,6 @@ public class CheckCollide : MonoBehaviour {
     public GameObject bd;
     
     public GameObject Touched;
-    public int dienum = 6;
 
     // Start is called before the first frame update
     void Start() {
@@ -31,7 +30,7 @@ public class CheckCollide : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-      
+        
     }
     
     void OnCollisionEnter2D(Collision2D other){
@@ -53,7 +52,7 @@ public class CheckCollide : MonoBehaviour {
             Touched = other.gameObject;
             StartCoroutine(getDie(other.gameObject));
             // we want this to replace the die with one of the powered up die
-            dienum += 1;
+            Dice.dieLevel += 1;
         }
         if (other.gameObject.tag == "life"){
             StartCoroutine(changeLife(other.gameObject));
