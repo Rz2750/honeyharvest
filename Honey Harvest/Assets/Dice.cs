@@ -9,9 +9,10 @@ public class Dice : MonoBehaviour {
     private Sprite[] diceSides9;
     // Reference to sprite renderer to change sprites
     private SpriteRenderer rend;
-    
-    
-    
+
+    public bool bosstile;
+
+
     public static int die1roll;
     public static int die2roll;
     public static int bossroll;
@@ -69,6 +70,9 @@ public class Dice : MonoBehaviour {
     // Coroutine that rolls the dice
     public IEnumerator RollTheDice()
     {
+        // IS THE SPRITE ON THE BOSS TILE OR NOT?
+
+
         // Variable to contain random dice side number.
         // It needs to be assigned. Let it be 0 initially
         int randomDiceSide = 0;
@@ -198,24 +202,22 @@ public class Dice : MonoBehaviour {
 
     public IEnumerator FinishCombatB(GameObject fighting)
     {
-        if (die1roll > die2roll)
+        if (die1roll > bossroll)
         {
-            Debug.Log("Player rolled a " + die1roll + " to beat computer's " + die2roll);
+            Debug.Log("Player rolled a " + die1roll + " to beat computer's " + bossroll);
             StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
-            if (fighting.tag == "Boss")
-            {
+            
                 yield return new WaitForSeconds(1.5f);
                 SceneManager.LoadScene("WinScene");                                                   // restart same level
-            }
+   
         }
-        else if (die1roll < die2roll)
+        else if (die1roll < bossroll)
         {
-            Debug.Log("Player rolled a " + die1roll + " but lost to computer's " + die2roll);
+            Debug.Log("Player rolled a " + die1roll + " but lost to computer's " + bossroll);
             ScoreScript.scoreValue -= 1;
-            if (fighting.tag != "Boss")
-            {
+            
                 StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
-            }
+            
             if (ScoreScript.scoreValue <= 0)
             {
                 yield return new WaitForSeconds(1.5f);

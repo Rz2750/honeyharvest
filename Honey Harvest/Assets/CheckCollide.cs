@@ -10,8 +10,8 @@ public class CheckCollide : MonoBehaviour {
     public GameObject die8;
     public GameObject die9;
     public GameObject die9b;
-    public GameObject die10;
     public GameObject lastTouched;
+    public bool bosstile;
 
     public GameObject cl1;
     public GameObject cl2;
@@ -26,6 +26,7 @@ public class CheckCollide : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         hideEverything();
+        bosstile = false;
     }
 
     // Update is called once per frame
@@ -61,9 +62,10 @@ public class CheckCollide : MonoBehaviour {
             StartCoroutine(changeLife(other.gameObject));
         }
         if (other.gameObject.tag == "Boss"){
+            bosstile = true;
             lastTouched = other.gameObject;
             die1.GetComponent<Renderer>().enabled = true;
-            die2.GetComponent<Renderer>().enabled = true;
+            die9b.GetComponent<Renderer>().enabled = true;
             cl1.SetActive(true);
             cl2.SetActive(true);
             cl3.SetActive(true);
@@ -85,10 +87,10 @@ public class CheckCollide : MonoBehaviour {
     private void hideEverything() {
         die1.GetComponent<Renderer>().enabled = false;
         die2.GetComponent<Renderer>().enabled = false;
-        die7.GetComponent<Renderer>().enabled = false;
-        die8.GetComponent<Renderer>().enabled = false;
-        die9.GetComponent<Renderer>().enabled = false;
-        die9b.GetComponent<Renderer>().enabled = false;
+        //die7.GetComponent<Renderer>().enabled = false;
+        //die8.GetComponent<Renderer>().enabled = false;
+        //die9.GetComponent<Renderer>().enabled = false;
+        //die9b.GetComponent<Renderer>().enabled = false;
         cl1.SetActive(false);
         cl2.SetActive(false);
         cl3.SetActive(false);

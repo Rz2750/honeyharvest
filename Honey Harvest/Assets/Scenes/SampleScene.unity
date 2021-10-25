@@ -1540,6 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1975ddfd00f42eb8f039c372d9b27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bosstile: 0
   player: {fileID: 1364263066}
   enemy: {fileID: 1781931662}
   life: {fileID: 813288110}
@@ -1735,6 +1736,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480d6a70900384bcda7b7fb57e6d480b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1277960189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277960187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1975ddfd00f42eb8f039c372d9b27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bosstile: 0
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  life: {fileID: 0}
+  powerup: {fileID: 0}
+  die1: {fileID: 0}
+  die2: {fileID: 0}
+  cl1: {fileID: 0}
+  cl2: {fileID: 0}
+  cl3: {fileID: 0}
+  cl4: {fileID: 0}
+  bd: {fileID: 0}
 --- !u!1 &1364263066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,8 +1889,9 @@ MonoBehaviour:
   die7: {fileID: 4828819310029297996, guid: c74dfb7844a224f59bb6a48a809f255d, type: 3}
   die8: {fileID: 106127620352616039, guid: 18f8a509da9564862857bd6c2506be10, type: 3}
   die9: {fileID: 3312525990961556373, guid: bfa78081fdbf5448db0bb16ea486a30c, type: 3}
-  die10: {fileID: 6817118682534836638, guid: 6c810781508c04d6f84ddde149d6ead2, type: 3}
+  die9b: {fileID: 0}
   lastTouched: {fileID: 5728720239100086719, guid: 834f6862c7ff1401085e3de79168ae33, type: 3}
+  bosstile: 0
   cl1: {fileID: 1979928859}
   cl2: {fileID: 399343791}
   cl3: {fileID: 628847890}
@@ -2277,6 +2303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1975ddfd00f42eb8f039c372d9b27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bosstile: 0
   player: {fileID: 1364263066}
   enemy: {fileID: 0}
   life: {fileID: 0}
@@ -2877,8 +2904,9 @@ MonoBehaviour:
   die7: {fileID: 0}
   die8: {fileID: 0}
   die9: {fileID: 0}
-  die10: {fileID: 0}
+  die9b: {fileID: 0}
   lastTouched: {fileID: 0}
+  bosstile: 0
   cl1: {fileID: 0}
   cl2: {fileID: 0}
   cl3: {fileID: 0}
