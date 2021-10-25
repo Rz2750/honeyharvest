@@ -62,18 +62,17 @@ public class CheckCollide : MonoBehaviour {
             StartCoroutine(changeLife(other.gameObject));
         }
         if (other.gameObject.tag == "Boss"){
-            bosstile = true;
             lastTouched = other.gameObject;
             die1.GetComponent<Renderer>().enabled = true;
-            die9b.GetComponent<Renderer>().enabled = true;
+            die2.GetComponent<Renderer>().enabled = true;
             cl1.SetActive(true);
             cl2.SetActive(true);
             cl3.SetActive(true);
             cl4.SetActive(true);
             // hl1.SetActive(false);
             bd.SetActive(true);
-
-            StartCoroutine(die9b.GetComponent<Dice>().RollTheDiceB());
+            
+            StartCoroutine(die2.GetComponent<Dice>().RollTheDice());
         }
     }
     
