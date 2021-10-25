@@ -11,7 +11,7 @@ public class CheckCollide : MonoBehaviour {
     public GameObject die9;
     public GameObject die9b;
     public GameObject lastTouched;
-    public bool bosstile;
+    //public bool bosstile;
 
     public GameObject cl1;
     public GameObject cl2;
@@ -26,7 +26,7 @@ public class CheckCollide : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         hideEverything();
-        bosstile = false;
+        //bosstile = false;
     }
 
     // Update is called once per frame

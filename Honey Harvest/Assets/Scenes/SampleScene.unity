@@ -1004,8 +1004,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668491130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.035, y: 1.75, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 1}
+  m_LocalPosition: {x: 0.02, y: 1.75, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 29
@@ -1891,7 +1891,6 @@ MonoBehaviour:
   die9: {fileID: 3312525990961556373, guid: bfa78081fdbf5448db0bb16ea486a30c, type: 3}
   die9b: {fileID: 0}
   lastTouched: {fileID: 5728720239100086719, guid: 834f6862c7ff1401085e3de79168ae33, type: 3}
-  bosstile: 0
   cl1: {fileID: 1979928859}
   cl2: {fileID: 399343791}
   cl3: {fileID: 628847890}
@@ -2906,7 +2905,6 @@ MonoBehaviour:
   die9: {fileID: 0}
   die9b: {fileID: 0}
   lastTouched: {fileID: 0}
-  bosstile: 0
   cl1: {fileID: 0}
   cl2: {fileID: 0}
   cl3: {fileID: 0}
