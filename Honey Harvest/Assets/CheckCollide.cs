@@ -51,12 +51,9 @@ public class CheckCollide : MonoBehaviour {
         if (other.gameObject.tag == "powerup")
         {
             Touched = other.gameObject;
+            StartCoroutine(getDie(other.gameObject));
             // we want this to replace the die with one of the powered up die
             dienum += 1;
-
-            
-
-           
         }
         if (other.gameObject.tag == "life"){
             StartCoroutine(changeLife(other.gameObject));
@@ -78,6 +75,11 @@ public class CheckCollide : MonoBehaviour {
     
     public IEnumerator changeLife(GameObject obj){
         ScoreScript.scoreValue += 1;
+        yield return new WaitForSecondsRealtime(2);
+        StartCoroutine(obj.GetComponent<HideOnStart>().Defeated());
+    }
+    
+    public IEnumerator getDie(GameObject obj){
         yield return new WaitForSecondsRealtime(2);
         StartCoroutine(obj.GetComponent<HideOnStart>().Defeated());
     }

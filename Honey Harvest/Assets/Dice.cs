@@ -169,10 +169,11 @@ public class Dice : MonoBehaviour {
     public IEnumerator FinishCombat(GameObject fighting) {
         if (die1roll > die2roll) {
             Debug.Log("Player rolled a " + die1roll + " to beat computer's " + die2roll);
-            StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
             if (fighting.tag == "Boss") {
               yield return new WaitForSeconds(1.5f);
               SceneManager.LoadScene("WinScene");                                                   // restart same level
+            } else {
+                StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
             }
         }
         else if (die1roll < die2roll){
@@ -190,8 +191,8 @@ public class Dice : MonoBehaviour {
         else{
             Debug.Log("Player and computer tied, both rolling " + die1roll);
             yield return new WaitForSeconds(2f);
-            //reroll die 2
-            yield return RollTheDice();
+            //todo reroll die 2
+            StartCoroutine("RollTheDice");
         }
             
         yield return new WaitForSeconds(1.5f);
