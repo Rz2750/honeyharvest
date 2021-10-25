@@ -9,6 +9,7 @@ public class CheckCollide : MonoBehaviour {
     public GameObject die7;
     public GameObject die8;
     public GameObject die9;
+    public GameObject die9b;
     public GameObject die10;
     public GameObject lastTouched;
 
@@ -20,6 +21,7 @@ public class CheckCollide : MonoBehaviour {
     public GameObject bd;
     
     public GameObject Touched;
+    public int dienum = 6;
 
     // Start is called before the first frame update
     void Start() {
@@ -49,23 +51,28 @@ public class CheckCollide : MonoBehaviour {
         {
             Touched = other.gameObject;
             // we want this to replace the die with one of the powered up die
+            dienum += 1;
+
+            
+
            
         }
         if (other.gameObject.tag == "life"){
             StartCoroutine(changeLife(other.gameObject));
         }
         if (other.gameObject.tag == "Boss"){
-           lastTouched = other.gameObject;
-           die1.GetComponent<Renderer>().enabled = true;
-           die2.GetComponent<Renderer>().enabled = true;
-           cl1.SetActive(true);
-           cl2.SetActive(true);
-           cl3.SetActive(true);
-           cl4.SetActive(true);
-           // hl1.SetActive(false);
-           bd.SetActive(true);
-           StartCoroutine(die2.GetComponent<Dice>().RollTheDice());
-       }
+            lastTouched = other.gameObject;
+            die1.GetComponent<Renderer>().enabled = true;
+            die2.GetComponent<Renderer>().enabled = true;
+            cl1.SetActive(true);
+            cl2.SetActive(true);
+            cl3.SetActive(true);
+            cl4.SetActive(true);
+            // hl1.SetActive(false);
+            bd.SetActive(true);
+
+            StartCoroutine(die9b.GetComponent<Dice>().RollTheDiceB());
+        }
     }
     
     public IEnumerator changeLife(GameObject obj){
@@ -78,6 +85,10 @@ public class CheckCollide : MonoBehaviour {
     private void hideEverything() {
         die1.GetComponent<Renderer>().enabled = false;
         die2.GetComponent<Renderer>().enabled = false;
+        die7.GetComponent<Renderer>().enabled = false;
+        die8.GetComponent<Renderer>().enabled = false;
+        die9.GetComponent<Renderer>().enabled = false;
+        die9b.GetComponent<Renderer>().enabled = false;
         cl1.SetActive(false);
         cl2.SetActive(false);
         cl3.SetActive(false);

@@ -6,6 +6,7 @@ public class Dice : MonoBehaviour {
 
     // Array of dice sides sprites to load from Resources folder
     private Sprite[] diceSides;
+    private Sprite[] diceSides9;
     // Reference to sprite renderer to change sprites
     private SpriteRenderer rend;
     
@@ -13,9 +14,10 @@ public class Dice : MonoBehaviour {
     
     public static int die1roll;
     public static int die2roll;
-    
-    
-    
+    public static int bossroll;
+
+
+
     public GameObject player;
     public GameObject enemy;
     public GameObject life;
@@ -39,7 +41,8 @@ public class Dice : MonoBehaviour {
         rend = GetComponent<SpriteRenderer>();
         // Load dice sides sprites to array from DiceSides subfolder of Resources folder
         diceSides = Resources.LoadAll<Sprite>("DiceSides/");
-	}
+        diceSides9 = Resources.LoadAll<Sprite>("DiceSides9/");
+    }
 
 
 
@@ -47,6 +50,18 @@ public class Dice : MonoBehaviour {
     private void OnMouseDown() {
         if (name == "Die1")
             StartCoroutine("RollTheDice");
+        //else if (name == "die7")
+        //{
+        //    StartCoroutine("RollTheDice7");
+        //}
+        //else if (name == "die8")
+        //{
+        //    StartCoroutine("RollTheDice8");
+        //}
+        //else if (name == "die9")
+        //{
+        //    StartCoroutine("RollTheDice9");
+        //}
     }
 
 
@@ -88,7 +103,7 @@ public class Dice : MonoBehaviour {
             die2roll = finalSide;
             Debug.Log("debug2");
         }
-        
+
         Debug.Log("die1roll: " + die1roll + ", die2roll: " + die2roll);
         
         
@@ -97,8 +112,55 @@ public class Dice : MonoBehaviour {
         if (name == "Die1")
             StartCoroutine("FinishCombat",player.GetComponent<CheckCollide>().lastTouched);
     }
-    
-    
+
+    public IEnumerator RollTheDiceB()
+    {
+        // Variable to contain random dice side number.
+        // It needs to be assigned. Let it be 0 initially
+        int randomDiceSide = 0;
+
+        // Final side or value that dice reads in the end of coroutine
+        int finalSide = 0;
+
+        // Loop to switch dice sides ramdomly
+        // before final side appears. 20 itterations here.
+        for (int i = 0; i <= 20; i++)
+        {
+            // Pick up random value from 0 to 5 (All inclusive)
+            randomDiceSide = Random.Range(1, 6);
+
+            // Set sprite to upper face of dice from array according to random value
+            rend.sprite = diceSides9[randomDiceSide];
+
+            // Pause before next itteration
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        // Assigning final side so you can use this value later in your game
+        // for player movement for example
+        finalSide = randomDiceSide + 3;
+
+        // Track final dice value
+        if (name == "Die1")
+        {
+            die1roll = finalSide;
+            Debug.Log("debug1");
+        }
+        else if (name == "Die9b")
+        {
+            bossroll = finalSide;
+            Debug.Log("debugB");
+        }
+
+        Debug.Log("die1roll: " + die1roll + ", bossroll: " + bossroll);
+
+
+        Debug.Log(name + " rolled a " + finalSide); // for debugging
+
+        if (name == "Die1")
+            StartCoroutine("FinishCombatB", player.GetComponent<CheckCollide>().lastTouched);
+    }
+
     // Coroutine that does everything after rolling the dice
     public IEnumerator FinishCombat(GameObject fighting) {
         if (die1roll > die2roll) {
@@ -133,9 +195,50 @@ public class Dice : MonoBehaviour {
         if (name == "Die1")
             hideEverything();
     }
-    
-    
-    
+
+    public IEnumerator FinishCombatB(GameObject fighting)
+    {
+        if (die1roll > die2roll)
+        {
+            Debug.Log("Player rolled a " + die1roll + " to beat computer's " + die2roll);
+            StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
+            if (fighting.tag == "Boss")
+            {
+                yield return new WaitForSeconds(1.5f);
+                SceneManager.LoadScene("WinScene");                                                   // restart same level
+            }
+        }
+        else if (die1roll < die2roll)
+        {
+            Debug.Log("Player rolled a " + die1roll + " but lost to computer's " + die2roll);
+            ScoreScript.scoreValue -= 1;
+            if (fighting.tag != "Boss")
+            {
+                StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
+            }
+            if (ScoreScript.scoreValue <= 0)
+            {
+                yield return new WaitForSeconds(1.5f);
+                SceneManager.LoadScene("LostScene");                                                   // restart same level
+            }
+
+        }
+        else
+        {
+            Debug.Log("Player and computer tied, both rolling " + die1roll);
+            yield return new WaitForSeconds(2f);
+            //reroll die 2
+            yield return RollTheDice();
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        if (name == "Die1")
+            hideEverything();
+    }
+
+
+
     private void hideEverything() {
         die1.GetComponent<Renderer>().enabled = false;
         die2.GetComponent<Renderer>().enabled = false;

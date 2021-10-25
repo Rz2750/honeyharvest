@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Dice7 : MonoBehaviour
+public class Dice9b : MonoBehaviour
 {
 
     // Array of dice sides sprites to load from Resources folder
-    private Sprite[] diceSides7;
+    private Sprite[] diceSides9;
 
     // Reference to sprite renderer to change sprites
     private SpriteRenderer rend;
@@ -18,17 +18,17 @@ public class Dice7 : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
 
         // Load dice sides sprites to array from DiceSides subfolder of Resources folder
-        diceSides7 = Resources.LoadAll<Sprite>("DiceSides7/");
+        diceSides9 = Resources.LoadAll<Sprite>("DiceSides9/");
     }
 
     // If you left click over the dice then RollTheDice coroutine is started
     private void OnMouseDown()
     {
-        StartCoroutine("RollTheDice7");
+        StartCoroutine("RollTheDice9b");
     }
 
     // Coroutine that rolls the dice
-    public IEnumerator RollTheDice7()
+    private IEnumerator RollTheDice9b()
     {
         // Variable to contain random dice side number.
         // It needs to be assigned. Let it be 0 initially
@@ -45,7 +45,7 @@ public class Dice7 : MonoBehaviour
             randomDiceSide = Random.Range(1, 6);
 
             // Set sprite to upper face of dice from array according to random value
-            rend.sprite = diceSides7[randomDiceSide];
+            rend.sprite = diceSides9[randomDiceSide];
 
             // Pause before next itteration
             yield return new WaitForSeconds(0.05f);
@@ -53,7 +53,7 @@ public class Dice7 : MonoBehaviour
 
         // Assigning final side so you can use this value later in your game
         // for player movement for example
-        finalSide = randomDiceSide + 1;
+        finalSide = randomDiceSide + 3;
 
         // Show final dice value in Console
         Debug.Log(finalSide);

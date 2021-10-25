@@ -24,11 +24,11 @@ public class Dice9 : MonoBehaviour
     // If you left click over the dice then RollTheDice coroutine is started
     private void OnMouseDown()
     {
-        StartCoroutine("RollTheDice");
+        StartCoroutine("RollTheDice9");
     }
 
     // Coroutine that rolls the dice
-    private IEnumerator RollTheDice()
+    public IEnumerator RollTheDice9()
     {
         // Variable to contain random dice side number.
         // It needs to be assigned. Let it be 0 initially
