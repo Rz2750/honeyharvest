@@ -10,15 +10,16 @@ public class CheckCollide : MonoBehaviour {
     public GameObject die8;
     public GameObject die9;
     public GameObject die10;
+    public GameObject lastTouched;
 
     public GameObject cl1;
     public GameObject cl2;
     public GameObject cl3;
     public GameObject cl4;
-    public GameObject hl1;
+    // public GameObject hl1;
     public GameObject bd;
     
-    public GameObject lastTouched;
+    public GameObject Touched;
 
     // Start is called before the first frame update
     void Start() {
@@ -33,30 +34,46 @@ public class CheckCollide : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other){
          if (other.gameObject.tag == "Enemy"){
             lastTouched = other.gameObject;
-            ScoreScript.scoreValue += 1;
             die1.GetComponent<Renderer>().enabled = true;
             die2.GetComponent<Renderer>().enabled = true;
             cl1.SetActive(true);
             cl2.SetActive(true);
             cl3.SetActive(true);
             cl4.SetActive(true);
-            hl1.SetActive(false);
+            // hl1.SetActive(false);
             bd.SetActive(true);
             
             StartCoroutine(die2.GetComponent<Dice>().RollTheDice());
         }
         if (other.gameObject.tag == "powerup")
         {
-            lastTouched = other.gameObject;
+            Touched = other.gameObject;
             // we want this to replace the die with one of the powered up die
            
         }
-        if (other.gameObject.tag == "heart"){
-            lastTouched = other.gameObject;
-            ScoreScript.scoreValue += 1;
+        if (other.gameObject.tag == "life"){
+            StartCoroutine(changeLife(other.gameObject));
         }
+        if (other.gameObject.tag == "Boss"){
+           lastTouched = other.gameObject;
+           die1.GetComponent<Renderer>().enabled = true;
+           die2.GetComponent<Renderer>().enabled = true;
+           cl1.SetActive(true);
+           cl2.SetActive(true);
+           cl3.SetActive(true);
+           cl4.SetActive(true);
+           // hl1.SetActive(false);
+           bd.SetActive(true);
+           StartCoroutine(die2.GetComponent<Dice>().RollTheDice());
+       }
     }
     
+    public IEnumerator changeLife(GameObject obj){
+        ScoreScript.scoreValue += 1;
+        yield return new WaitForSecondsRealtime(2);
+        StartCoroutine(obj.GetComponent<HideOnStart>().Defeated());
+    }
+
     
     private void hideEverything() {
         die1.GetComponent<Renderer>().enabled = false;
@@ -65,7 +82,7 @@ public class CheckCollide : MonoBehaviour {
         cl2.SetActive(false);
         cl3.SetActive(false);
         cl4.SetActive(false);
-        hl1.SetActive(true);
+        // hl1.SetActive(true);
         bd.SetActive(false);
     }
 }

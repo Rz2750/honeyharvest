@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Dice : MonoBehaviour {
 
@@ -27,7 +28,7 @@ public class Dice : MonoBehaviour {
     public GameObject cl2;
     public GameObject cl3;
     public GameObject cl4;
-    public GameObject hl1;
+    // public GameObject hl1;
     public GameObject bd;
     
     
@@ -103,13 +104,31 @@ public class Dice : MonoBehaviour {
         if (die1roll > die2roll) {
             Debug.Log("Player rolled a " + die1roll + " to beat computer's " + die2roll);
             StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
+            if (fighting.tag == "Boss") {
+              yield return new WaitForSeconds(1.5f);
+              SceneManager.LoadScene("WinScene");                                                   // restart same level
+            }
         }
-        else if (die1roll < die2roll)
+        else if (die1roll < die2roll){
             Debug.Log("Player rolled a " + die1roll + " but lost to computer's " + die2roll);
-        else
-            Debug.Log("Player and computer tied, both rolling " + die1roll);
+            ScoreScript.scoreValue -= 1;
+            if(fighting.tag != "Boss"){
+                StartCoroutine(fighting.GetComponent<HideOnStart>().Defeated());
+            }            
+            if (ScoreScript.scoreValue <= 0) {
+              yield return new WaitForSeconds(1.5f);
+              SceneManager.LoadScene("LostScene");                                                   // restart same level
+            }
             
-        yield return new WaitForSeconds(3f);
+        }
+        else{
+            Debug.Log("Player and computer tied, both rolling " + die1roll);
+            yield return new WaitForSeconds(2f);
+            //reroll die 2
+            yield return RollTheDice();
+        }
+            
+        yield return new WaitForSeconds(1.5f);
         
         if (name == "Die1")
             hideEverything();
@@ -124,7 +143,7 @@ public class Dice : MonoBehaviour {
         cl2.SetActive(false);
         cl3.SetActive(false);
         cl4.SetActive(false);
-        hl1.SetActive(true);
+        // hl1.SetActive(true);
         bd.SetActive(false);
     }
 }
